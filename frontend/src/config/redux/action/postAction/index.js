@@ -135,7 +135,6 @@ export const deleteComment = createAsyncThunk(
   }
 );
 
-
 export const toggleLike = createAsyncThunk(
   "post/toggleLike",
   async ({ post_id }, thunkAPI) => {
@@ -178,7 +177,7 @@ api.interceptors.response.use(
           const newToken = await user.getIdToken(true);
           localStorage.setItem("token", newToken);
           originalRequest.headers["Authorization"] = `Bearer ${newToken}`;
-          return axios(originalRequest);
+          return api(originalRequest);
         }
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
