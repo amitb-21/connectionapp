@@ -1,0 +1,423 @@
+/* BACKDROP CONTAINER */
+.backdropContainer {
+  background: #f3f6fb;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+  position: relative;
+}
+
+/* TOP BACKDROP HEADER */
+.backdrop {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(90deg, #0073b1, #005983);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* PROFILE CARD */
+.profileContainer {
+  position: absolute;
+  top: 140px; /* So it overlaps the backdrop */
+  z-index: 2;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* PROFILE HEADER */
+.profileHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* PROFILE IMAGE */
+.profilePicture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  background-color: #ccc;
+  flex-shrink: 0;
+}
+
+.profileInitial {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  background-color: #0073b1;
+}
+
+/* PROFILE INFO */
+.profileInfo {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.profileInfo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #292929;
+}
+
+.profileUsername {
+  color: #666;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* PROFILE ACTIONS */
+.profileActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* CONNECTION STATUS & BUTTONS */
+.connected, .requestSent {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.connected {
+  background-color: #e7f5ff;
+  color: #0073b1;
+  border: 1px solid #0073b1;
+}
+
+.requestSent {
+  background-color: #f1f1f1;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.connectBtn {
+  background-color: #0073b1;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.connectBtn:hover {
+  background-color: #005983;
+}
+
+.downloadBtn {
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  background-color: #0073b1;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.downloadBtn:hover {
+  background-color: #005983;
+}
+
+/* PROFILE DETAILS */
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* SECTION STYLING */
+.profileSection {
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+}
+
+.profileSection h3 {
+  font-size: 16px;
+  color: #292929;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.profileSection p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.profileEducation, .profileExperience {
+  margin-bottom: 12px;
+}
+
+.profileEducation h4, .profileExperience h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.profileEducation p, .profileExperience p {
+  margin: 0;
+  color: #666;
+}
+
+/* POSTS SECTION */
+.profilePosts {
+  margin-top: 16px;
+}
+
+.profilePosts h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #292929;
+}
+
+.noPosts {
+  color: #666;
+  font-style: italic;
+}
+
+/* POST CARD */
+.postCard {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.postAuthor {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.postDate {
+  color: #666;
+  font-size: 12px;
+}
+
+.postContent {
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 16px;
+  flex-grow: 1;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* POST MEDIA */
+.postMediaWrapper {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.postMedia {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* POST INTERACTIONS */
+.optionsContainer {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.singleOption__optionsConatiner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.singleOption__optionsConatiner:hover {
+  background-color: #f1f1f1;
+}
+
+.singleOption__optionsConatiner svg {
+  width: 20px;
+  height: 20px;
+}
+
+.commentButton {
+  color: inherit;
+  font-size: inherit;
+}
+
+/* LIKES DISPLAY */
+.likedByUsers {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.likedAvatars {
+  display: flex;
+  margin-right: 8px;
+}
+
+.likedAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+.likedByText {
+  color: #666;
+  cursor: pointer;
+}
+
+.likedByText:hover {
+  text-decoration: underline;
+  color: #0073b1;
+}
+
+/* LIKES MODAL */
+.likesModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.likesModal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.likesModalHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.backButton:hover {
+  background-color: #f1f1f1;
+}
+
+.likesModalHeader h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.likesModalContent {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.likeUserItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.likeUserAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.likeUserInfo {
+  flex: 1;
+}
+
+.likeUserName {
+  font-weight: 600;
+  margin: 0;
+}
+
+.likeUserHandle {
+  color: #666;
+  margin: 0;
+  font-size: 13px;
+}
+
+.noLikesMessage {
+  color: #666;
+  text-align: center;
+  padding: 24px;
+}

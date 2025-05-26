@@ -1,0 +1,239 @@
+/* styles.module.css */
+.container {
+    width: 100%;
+  }
+  
+  .connectionsContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .pageTitle {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #0a66c2;
+  }
+  
+  .tabsContainer {
+    display: flex;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .tabButton {
+    padding: 12px 24px;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+  }
+  
+  .activeTab {
+    color: #0a66c2;
+    font-weight: 600;
+  }
+  
+  .activeTab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0a66c2;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+  }
+  
+  .contentContainer {
+    min-height: 300px;
+  }
+  
+  .connectionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .connectionCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .connectionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileImageContainer {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  
+  .profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .connectionInfo {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .connectionName {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .connectionUsername {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .viewProfileButton {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .viewProfileButton:hover {
+    background-color: #004182;
+  }
+  
+  .requestsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .requestCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .requestProfile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .requestProfileImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .requestInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .requestName {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .requestUsername {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .requestActions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .acceptButton {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .acceptButton:hover {
+    background-color: #004182;
+  }
+  
+  .rejectButton {
+    background-color: white;
+    color: #666;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .rejectButton:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 40px 0;
+    color: #666;
+  }
+  
+  .sentRequestsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .cancelButton {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .cancelButton:hover {
+    background-color: #d0d0d0;
+  }
+  
+  .cancelButton:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+  }
+  

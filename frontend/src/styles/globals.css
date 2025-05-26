@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Karma:wght@300;400;500;600;700&family=Ojuju:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rambla:ital,wght@0,400;0,700;1,400;1,700&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
+:root {
+  --linkedin-blue: #0a66c2;
+  --linkedin-light-blue: #e7f3ff;
+  --linkedin-hover-blue: #f3f6f8;
+  --linkedin-text: #1d2129;
+  --linkedin-secondary-text: #65676b;
+  --linkedin-border: #e4e6eb;
+  --linkedin-bg: #f5fafe;
+  --linkedin-card-bg: #ffffff;
+  --linkedin-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--linkedin-bg);
+  color: var(--linkedin-text);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--linkedin-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+
+.card {
+  background-color: var(--linkedin-card-bg);
+  border-radius: 8px;
+  box-shadow: var(--linkedin-shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--linkedin-blue);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #004182;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--linkedin-blue);
+  border: 1px solid var(--linkedin-blue);
+}
+
+.btn-secondary:hover {
+  background-color: var(--linkedin-hover-blue);
+}
+
+/* Utility classes */
+.text-secondary {
+  color: var(--linkedin-secondary-text);
+}
+

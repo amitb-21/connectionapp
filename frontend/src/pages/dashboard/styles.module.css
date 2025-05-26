@@ -1,0 +1,527 @@
+.scrollComponent {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  min-height: calc(100vh - 60px);
+}
+
+.scrollComponent > div {
+  width: 100%;
+  max-width: 720px;
+}
+
+.createPostcontainer {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.25rem;
+  gap: 1rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.createPostcontainer:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.userProfile {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border: 2px solid #e1e4e8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.createPostcontainer > textarea {
+  flex: 1;
+  min-height: 54px;
+  border: 1px solid #e4e6eb;
+  border-radius: 24px;
+  padding: 14px 18px;
+  resize: vertical;
+  font-size: 15px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  outline: none;
+  transition: all 0.25s ease;
+  background: #f7f8fa;
+  line-height: 1.6;
+  color: #1d2129;
+}
+
+.createPostcontainer > textarea:focus {
+  border-color: #1877f2;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.15);
+}
+
+.createPostcontainer > textarea::placeholder {
+  color: #65676b;
+  font-weight: 400;
+}
+
+.Fab {
+  background: linear-gradient(45deg, #1877f2, #2d88ff);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.Fab:active {
+  transform: scale(0.95);
+}
+
+.Fab > svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.uploadButton {
+  margin-left: auto;
+  background: linear-gradient(45deg, #1877f2, #2d88ff);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  letter-spacing: 0.3px;
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.uploadButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.previewContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.previewImage:hover {
+  transform: scale(1.01);
+}
+
+.loader {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.postContainers {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.singleCard {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.singleCard:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.625rem;
+  width: 100%;
+  height: 1px;
+  background-color: #e4e6eb;
+}
+
+.singleCard:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.singleCard__profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.singleCard__profileContainer img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e1e4e8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userName {
+  font-weight: 600;
+  color: #1d2129;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.userHandle {
+  font-size: 14px;
+  color: #65676b;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.deleteButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #65676b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.deleteButton:hover {
+  background-color: #f0f2f5;
+  color: #e41e3f;
+}
+
+.singleCard__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.singleCard__content p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1d2129;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.postMedia {
+  max-height: 400px;
+  object-fit: contain;
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.postMedia:hover {
+  transform: scale(1.01);
+}
+
+.sortToggleContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 1rem;
+}
+
+.sortToggleButton {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e4e6eb;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1877f2;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.sortToggleButton:hover {
+  background-color: #f0f2f5;
+  border-color: #1877f2;
+}
+
+.sortToggleButton svg {
+  transition: transform 0.3s ease;
+}
+
+.sortToggleButton:hover svg {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .createPostcontainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .createPostcontainer > textarea {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .uploadButton {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .previewImage {
+    max-height: 250px;
+  }
+  
+  .Fab {
+    align-self: flex-end;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.singleCard {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  margin-top: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.singleOption__optionsConatiner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.singleOption__optionsConatiner:hover {
+  background-color: #f0f2f5;
+}
+
+.singleOption__optionsConatiner svg {
+  width: 20px;
+  height: 20px;
+}
+
+.likesModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.likesModal {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.likesModalHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  color: #555;
+}
+
+.backButton:hover {
+  color: #000;
+}
+
+.likesModalHeader h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.likesModalContent {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: calc(80vh - 60px);
+}
+
+.likeUserItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.likeUserItem:last-child {
+  border-bottom: none;
+}
+
+.likeUserAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.likeUserInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.likeUserName {
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.likeUserHandle {
+  color: #65676b;
+  margin: 0;
+  font-size: 12px;
+}
+
+.noLikesMessage {
+  text-align: center;
+  color: #65676b;
+  padding: 20px;
+}
+
+.likedByUsers {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin-top: -1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.likedAvatars {
+  display: flex;
+  margin-right: 8px;
+}
+
+.likedAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+.likedByText {
+  font-size: 13px;
+  color: #65676b;
+  margin: 0;
+  cursor: pointer;
+}
+
+.likedByText:hover {
+  text-decoration: underline;
+}
+
+.singleOption__optionsConatiner {
+  cursor: pointer;
+}
+
+.singleOption__optionsConatiner:hover {
+  background-color: #f2f2f2;
+}
+
+.likedByPreview {
+  cursor: pointer;
+}
+
+.likedByPreview:hover {
+  text-decoration: underline;
+}
+
+.backButton {
+  cursor: pointer;
+}
+
+.likeUserItem {
+  cursor: pointer;
+}
+
+.likeUserItem:hover {
+  background-color: #f7f7f7;
+}

@@ -1,0 +1,199 @@
+/* Profile.module.css */
+.profileContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+  
+  .profileContainer h1 {
+    font-size: 24px;
+    color: #0a66c2;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .profileImageSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .imageContainer {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 3px solid #f3f6f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .placeholderImage {
+    width: 100%;
+    height: 100%;
+    background-color: #0a66c2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .profileImageSection input[type="file"] {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .formSection {
+    margin-bottom: 32px;
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .formSection h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .formGroup {
+    margin-bottom: 16px;
+  }
+  
+  .formGroup label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .formGroup input,
+  .formGroup textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .formGroup textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .error {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+  }
+  
+  .educationItem,
+  .experienceItem {
+    background-color: white;
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .educationItem input,
+  .experienceItem input {
+    margin-bottom: 12px;
+  }
+  
+  .experienceItem textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 80px;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+  
+  .yearInputs {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .yearInputs input {
+    flex: 1;
+  }
+  
+  .formSection button[type="button"] {
+    background-color: #f3f6f8;
+    color: #0a66c2;
+    border: 1px solid #0a66c2;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+  }
+  
+  .formSection button[type="button"]:hover {
+    background-color: #e5effa;
+  }
+  
+  .submitButton {
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+    transition: background-color 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #084b8a;
+  }
+  
+  .submitButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 768px) {
+    .profileContainer {
+      padding: 16px;
+    }
+    
+    .yearInputs {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .formSection {
+      padding: 16px;
+    }
+  }
+  

@@ -1,0 +1,86 @@
+.container {
+  padding: 1.2rem;
+  background-color: var(--linkedin-card-bg);
+  border-bottom: 1px solid var(--linkedin-border);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-weight: 600;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: var(--linkedin-blue);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbarOptions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--linkedin-text);
+}
+
+.profileLink {
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--linkedin-secondary-text);
+  position: relative;
+}
+
+.profileLink:hover {
+  color: var(--linkedin-blue);
+  text-decoration: underline;
+}
+
+.buttonJoin {
+  background: var(--linkedin-blue);
+  border-radius: 24px;
+  padding: 0.6rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.buttonJoin:hover {
+  background: #004182;
+}
+
+.buttonLogout {
+  background: var(--linkedin-card-bg);
+  border: 1px solid var(--linkedin-blue);
+  border-radius: 24px;
+  padding: 0.6rem 1.5rem;
+  color: var(--linkedin-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buttonLogout:hover {
+  background: var(--linkedin-hover-blue);
+  box-shadow: 0 0 0 1px var(--linkedin-blue);
+}
