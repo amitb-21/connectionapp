@@ -16,7 +16,6 @@ const api = axios.create({
   }
 });
 
-// Add auth token to requests
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -32,18 +31,15 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (user, thunkAPI) => {
     try {
-      // Firebase authentication
       const userCredential = await signInWithEmailAndPassword(
         auth, 
         user.email.trim(), 
         user.password.trim()
       );
       
-      // Get Firebase ID token
       const token = await userCredential.user.getIdToken();
       localStorage.setItem("token", token);
       
-      // Get user profile from backend
       const response = await api.get("/get_user_and_profile", {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -64,18 +60,15 @@ export const registerUser = createAsyncThunk(
   "user/register",
   async (user, thunkAPI) => {
     try {
-      // Create user in Firebase
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         user.email.trim(),
         user.password.trim()
       );
       
-      // Get Firebase ID token
       const token = await userCredential.user.getIdToken();
       localStorage.setItem("token", token);
       
-      // Register user in backend
       const response = await api.post("/register", {
         name: user.name,
         email: user.email.trim(),
@@ -85,7 +78,6 @@ export const registerUser = createAsyncThunk(
       
       return { message: "User Created successfully" };
     } catch (error) {
-      // If Firebase registration succeeds but backend fails, delete Firebase user
       if (error.response && auth.currentUser) {
         await auth.currentUser.delete();
       }
@@ -195,7 +187,6 @@ export const getMyConnectionRequests = createAsyncThunk(
     }
   }
 );
-
 
 export const whatAreMyConnections = createAsyncThunk(
   "user/whatAreMyConnections",
@@ -313,7 +304,6 @@ export const uploadProfilePicture = createAsyncThunk(
   }
 );
 
-// In frontend/src/config/redux/action/authAction/index.js
 export const downloadProfile = createAsyncThunk(
   "user/downloadProfile",
   async (userId, thunkAPI) => {
@@ -322,12 +312,10 @@ export const downloadProfile = createAsyncThunk(
         responseType: 'blob'
       });
       
-      // Create blob link to download
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
       
-      // Get filename from response headers or use default
       const contentDisposition = response.headers['content-disposition'];
       const filename = contentDisposition 
         ? contentDisposition.split('filename=')[1].replace(/"/g, '')
@@ -348,25 +336,20 @@ export const downloadProfile = createAsyncThunk(
   }
 );
 
-
-// Add response interceptor for token refresh
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
     
-    // If error is 403 (token expired) and we haven't retried yet
     if (error.response?.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       
       try {
-        // Force refresh token
         const user = auth.currentUser;
         if (user) {
           const newToken = await user.getIdToken(true);
           localStorage.setItem("token", newToken);
           
-          // Update the failed request with new token
           originalRequest.headers["Authorization"] = `Bearer ${newToken}`;
           return axios(originalRequest);
         }
