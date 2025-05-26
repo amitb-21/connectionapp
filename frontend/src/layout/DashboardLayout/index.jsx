@@ -9,7 +9,6 @@ export default function DashboardLayout({children}) {
     const dispatch = useDispatch();
     const authState = useSelector((state) => state.auth);
     
-    // Get current path to determine active link
     const currentPath = router.pathname;
 
     useEffect(() => {

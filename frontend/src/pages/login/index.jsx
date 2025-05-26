@@ -4,7 +4,7 @@ import { loginUser } from "@/config/redux/action/authAction";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import { resetState } from "@/config/redux/reducer/authReducer"; // Import the resetState action
+import { resetState } from "@/config/redux/reducer/authReducer";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +27,6 @@ export default function Login() {
       router.push("/dashboard");
     }
     
-    // Clean up function to reset state when component unmounts
     return () => {
       dispatch(resetState());
     };
@@ -41,7 +40,6 @@ export default function Login() {
         {isError && <div className={styles.error}>{message}</div>}
         
         <form onSubmit={handleSubmit}>
-          {/* Form content remains the same */}
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
             <input

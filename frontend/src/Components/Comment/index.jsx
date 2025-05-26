@@ -11,11 +11,10 @@ const Comment = ({ postId, onClose }) => {
   const [commentText, setCommentText] = useState('');
   const [page, setPage] = useState(1);
   
-  // Get comments from the new nested structure
   const comments = postState.commentsByPostId?.[postId] || [];
   const commentPagination = postState.commentPagination?.[postId];
   
-  // Fetch comments when component mounts
+
   useEffect(() => {
     if (postId) {
       dispatch(getCommentsByPost({ post_id: postId, page: 1 }));

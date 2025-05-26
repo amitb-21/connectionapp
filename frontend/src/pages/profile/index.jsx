@@ -7,14 +7,13 @@ import * as z from 'zod';
 import { updateUserProfile, updateProfileData, uploadProfilePicture } from '@/config/redux/action/authAction';
 import UserLayout from '@/layout/UserLayout';
 import styles from './styles.module.css';
+import { BASE_URL } from '@/config';
 
-// Define Zod schema for validation
 const profileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   bio: z.string().optional(),
   currentPost: z.string().optional(),
   skills: z.string().optional(),
-  // Education and experience will be handled separately
 });
 
 export default function Profile() {
@@ -29,7 +28,6 @@ export default function Profile() {
   const [experience, setExperience] = React.useState([]);
   const [uploadStatus, setUploadStatus] = React.useState('');
 
-  // Initialize React Hook Form with Zod validation
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -40,7 +38,6 @@ export default function Profile() {
     }
   });
 
-  // Initialize form with user data when available
   useEffect(() => {
     if (user && profile) {
       setValue('name', user.name || '');
@@ -58,8 +55,6 @@ export default function Profile() {
     if (file) {
       setProfileImage(file);
       setPreviewImage(URL.createObjectURL(file));
-      
-      // Optional: Upload immediately without waiting for form submission
       uploadImageDirectly(file);
     }
   };
@@ -84,24 +79,20 @@ export default function Profile() {
     }
   };
 
-  // Add education field
   const addEducation = () => {
     setEducation([...education, { institution: '', degree: '', startYear: '', endYear: '' }]);
   };
 
-  // Update education field
   const updateEducation = (index, field, value) => {
     const newEducation = [...education];
     newEducation[index][field] = value;
     setEducation(newEducation);
   };
 
-  // Add experience field
   const addExperience = () => {
     setExperience([...experience, { company: '', position: '', startYear: '', endYear: '', description: '' }]);
   };
 
-  // Update experience field
   const updateExperience = (index, field, value) => {
     const newExperience = [...experience];
     newExperience[index][field] = value;
@@ -109,21 +100,17 @@ export default function Profile() {
   };
 
   const onSubmit = async (data) => {
-    // Update basic profile info
     await dispatch(updateUserProfile({
       name: data.name,
       bio: data.bio,
       currentPost: data.currentPost
     }));
-    
-    // Update detailed profile data
+
     await dispatch(updateProfileData({
       education: education,
       experience: experience,
       skills: data.skills.split(',').map(skill => skill.trim()).filter(skill => skill)
     }));
-    
-    // Upload profile picture if selected and not already uploaded
     if (profileImage && uploadStatus !== 'Upload successful!') {
       const imageData = new FormData();
       imageData.append('profile_picture', profileImage);
@@ -149,10 +136,11 @@ export default function Profile() {
             >
               {previewImage || user.profilePicture ? (
                 <img 
-                  src={previewImage || `http://localhost:5050/uploads/${user.profilePicture}?v=${new Date().getTime()}`} 
+                  src={previewImage || `${BASE_URL}/uploads/${user.profilePicture}?v=${new Date().getTime()}`} 
                   alt={`${user.name}'s profile`} 
                   key={user.profilePicture} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                  onError={(e) => { e.target.src = '/images/default-profile.png'; }}
                 />
               ) : (
                 <div className={styles.placeholderImage}>

@@ -10,6 +10,7 @@ import {
 } from '@/config/redux/action/authAction';
 import styles from './styles.module.css';
 import { Button, CircularProgress } from '@mui/material';
+import { BASE_URL } from '@/config';
 
 export default function DiscoverPage() {
   const authState = useSelector((state) => state.auth);
@@ -21,14 +22,12 @@ export default function DiscoverPage() {
   const [isProcessing, setIsProcessing] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Fetch users once
   useEffect(() => {
     if (!authState.all_profiles_fetched) {
       dispatch(getAllUsers());
     }
   }, [authState.all_profiles_fetched, dispatch]);
 
-  // Update filtered users whenever authState.all_users or search changes
   useEffect(() => {
     if (authState.all_users?.length > 0) {
       const filtered = searchTerm.trim() === ''
@@ -53,8 +52,7 @@ export default function DiscoverPage() {
     if (!user) return;
   
     setIsProcessing(prev => ({ ...prev, [userId]: true }));
-  
-    // Apply optimistic update for immediate UI feedback
+
     const updateUserStateLocally = () => {
       setFilteredUsers(prev =>
         prev.map(u => {
@@ -89,17 +87,14 @@ export default function DiscoverPage() {
     dispatch(action({ connectionId: userId }))
       .then((result) => {
         if (result.error) {
-          // Revert local changes on error
           setFilteredUsers(prev => prev.map(u => (u._id === userId ? user : u)));
           setErrorMessage(result.payload?.message || 'Error');
           setTimeout(() => setErrorMessage(''), 3000);
         } else {
-          // Success - refresh the users list to update the connection status
           dispatch(getAllUsers());
         }
       })
       .catch(() => {
-        // Revert local changes on error
         setFilteredUsers(prev => prev.map(u => (u._id === userId ? user : u)));
         setErrorMessage('Unexpected error');
         setTimeout(() => setErrorMessage(''), 3000);
@@ -155,10 +150,10 @@ export default function DiscoverPage() {
                     <div className={styles.avatarContainer}>
                       {user.profilePicture ? (
                         <img
-                          src={`http://localhost:5050/uploads/${user.profilePicture}`}
+                          src={`${BASE_URL}/uploads/${user.profilePicture || 'default.png'}`} 
                           alt={user.name}
                           className={styles.avatar}
-                          onError={(e) => { e.target.src = '/images/default-profile.png'; }}
+                          onError={(e) => { e.target.src = `${BASE_URL}/uploads/default.png`; }}
                         />
                       ) : (
                         <div className={styles.defaultAvatar}>

@@ -31,8 +31,6 @@ export default function Dashboard() {
 });
 const [page, setPage] = useState(1);
 
-
-
   useEffect(() => {
   if (authState.isTokenThere) {
     dispatch(getAllPosts({ page: 1, limit: 10 }));

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleConnectionRequest,  downloadProfile } from '@/config/redux/action/authAction';
+import { toggleConnectionRequest, downloadProfile } from '@/config/redux/action/authAction';
 import { toggleLike, get_likes_by_post, getCommentsByPost } from '@/config/redux/action/postAction';
 import UserLayout from '@/layout/UserLayout';
 import DashboardLayout from '@/layout/DashboardLayout';
@@ -23,14 +23,12 @@ export default function ViewProfilePage({ userProfile, user, connectionStatus, p
     postId: null
   });
 
-const handleDownloadResume = async () => {
-  if (user && user._id) {
-    await dispatch(downloadProfile(user._id));
-  }
-};
+  const handleDownloadResume = async () => {
+    if (user && user._id) {
+      await dispatch(downloadProfile(user._id));
+    }
+  };
 
-
-  // Load likes and comments data after component mounts
   useEffect(() => {
     if (posts && posts.length > 0) {
       posts.forEach(post => {
@@ -45,12 +43,10 @@ const handleDownloadResume = async () => {
   const handleToggleConnection = async () => {
     if (user && user._id) {
       await dispatch(toggleConnectionRequest({ connectionId: user._id }));
-      // Refresh the page to update connection status
       router.replace(router.asPath);
     }
   };
   
-
   const handleToggleLike = async (postId) => {
     await dispatch(toggleLike({ post_id: postId }));
   };
@@ -96,52 +92,53 @@ const handleDownloadResume = async () => {
           <div className={styles.backdrop}></div>
           <div className={styles.profileContainer}>
 
-<div className={styles.profileHeader}>
-  <div className={styles.profilePicture}>
-    {user?.profilePicture ? (
-      <img
-        src={`${BASE_URL}/uploads/${user.profilePicture}`}
-        alt={user.name}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    ) : (
-      <div className={styles.profileInitial}>
-        {user?.name?.charAt(0) || "U"}
-      </div>
-    )}
-  </div>
-  
-  <div className={styles.profileInfo}>
-    <h1>{user?.name}</h1>
-    <p className={styles.profileUsername}>@{user?.username}</p>
-    
-    <div className={styles.profileActions}>
-      {connectionStatus?.isConnection ? (
-        <span className={styles.connected}>Connected</span>
-      ) : connectionStatus?.requestSent ? (
-        <span className={styles.requestSent}>Connection Request Sent</span>
-      ) : (
-        <button 
-          className={styles.connectBtn}
-          onClick={handleToggleConnection}
-        >
-          Connect
-        </button>
-      )}
-      
-      <button 
-        className={styles.downloadBtn}
-        onClick={handleDownloadResume}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-        </svg>
-        Download Resume
-      </button>
-    </div>
-  </div>
-</div>
+            <div className={styles.profileHeader}>
+              <div className={styles.profilePicture}>
+                {user?.profilePicture ? (
+                  <img
+                    src={`${BASE_URL}/uploads/${user.profilePicture}`}
+                    alt={user.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div className={styles.profileInitial}>
+                    {user?.name?.charAt(0) || "U"}
+                  </div>
+                )}
+              </div>
+              
+              <div className={styles.profileInfo}>
+                <h1>{user?.name}</h1>
+                <p className={styles.profileUsername}>@{user?.username}</p>
+                
+                <div className={styles.profileActions}>
+                  {connectionStatus?.isConnection ? (
+                    <span className={styles.connected}>Connected</span>
+                  ) : connectionStatus?.requestSent ? (
+                    <span className={styles.requestSent}>Connection Request Sent</span>
+                  ) : (
+                    <button 
+                      className={styles.connectBtn}
+                      onClick={handleToggleConnection}
+                    >
+                      Connect
+                    </button>
+                  )}
+                  
+                  <button 
+                    className={styles.downloadBtn}
+                    onClick={handleDownloadResume}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    Download Resume
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div className={styles.profileDetails}>
               <section className={styles.profileSection}>
                 <h3>Bio</h3>
@@ -152,35 +149,35 @@ const handleDownloadResume = async () => {
                 <p>{userProfile?.currentPost || "No current position listed"}</p>
               </section>
               {userProfile?.education?.length > 0 && (
-  <section className={styles.profileSection}>
-    <h3>Education</h3>
-    {userProfile.education.map((edu, index) => (
-      <div key={index} className={styles.profileEducation}>
-        <h4>{edu.institution}</h4>
-        <p>
-          {edu.degree}
-          {edu.fieldOfStudy && `, ${edu.fieldOfStudy}`}
-          {(edu.startYear || edu.endYear) && ` (${edu.startYear}${edu.startYear && edu.endYear ? ' - ' : ''}${edu.endYear})`}
-        </p>
-      </div>
-    ))}
-  </section>
-)}
+                <section className={styles.profileSection}>
+                  <h3>Education</h3>
+                  {userProfile.education.map((edu, index) => (
+                    <div key={index} className={styles.profileEducation}>
+                      <h4>{edu.institution}</h4>
+                      <p>
+                        {edu.degree}
+                        {edu.fieldOfStudy && `, ${edu.fieldOfStudy}`}
+                        {(edu.startYear || edu.endYear) && ` (${edu.startYear}${edu.startYear && edu.endYear ? ' - ' : ''}${edu.endYear})`}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+              )}
 
-{userProfile?.experience?.length > 0 && (
-  <section className={styles.profileSection}>
-    <h3>Past Work</h3>
-    {userProfile.experience.map((work, index) => (
-      <div key={index} className={styles.profileExperience}>
-        <h4>{work.company}</h4>
-        <p>
-          {work.position}
-          {(work.startYear || work.endYear) && ` (${work.startYear}${work.startYear && work.endYear ? ' - ' : ''}${work.endYear})`}
-        </p>
-      </div>
-    ))}
-  </section>
-)}
+              {userProfile?.experience?.length > 0 && (
+                <section className={styles.profileSection}>
+                  <h3>Past Work</h3>
+                  {userProfile.experience.map((work, index) => (
+                    <div key={index} className={styles.profileExperience}>
+                      <h4>{work.company}</h4>
+                      <p>
+                        {work.position}
+                        {(work.startYear || work.endYear) && ` (${work.startYear}${work.startYear && work.endYear ? ' - ' : ''}${work.endYear})`}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+              )}
 
               {userProfile?.skills?.length > 0 && (
                 <section className={styles.profileSection}>
@@ -200,7 +197,7 @@ const handleDownloadResume = async () => {
                         src={`${BASE_URL}/uploads/${post.userId?.profilePicture || 'default.png'}`}
                         alt={post.userId?.name || user?.name}
                         className={styles.profilePicture}
-                        onError={(e) => { e.target.src = '/images/default-profile.png'; }}
+                        onError={(e) => { e.target.src = `${BASE_URL}/uploads/default.png`; }}
                         style={{ width: 32, height: 32, borderRadius: '50%', marginRight: 8 }}
                       />
                       <span className={styles.postAuthor}>{post.userId?.name || user?.name}</span>
@@ -218,7 +215,6 @@ const handleDownloadResume = async () => {
                       </div>
                     )}
                     
-                    {/* Post Interactions */}
                     <div className={styles.optionsContainer}>
                       <div 
                         className={styles.singleOption__optionsConatiner} 
@@ -246,7 +242,6 @@ const handleDownloadResume = async () => {
                       </div>
                     </div>
                     
-                    {/* Likes Display */}
                     {(post.likesCount > 0 || post.likes?.length > 0) && (
                       <div className={styles.likedByUsers}>
                         <div className={styles.likedAvatars}>
@@ -257,7 +252,7 @@ const handleDownloadResume = async () => {
                               alt={user.name}
                               className={styles.likedAvatar}
                               style={{ marginLeft: index > 0 ? '-8px' : '0' }}
-                              onError={(e) => { e.target.src = '/images/default-profile.png'; }}
+                              onError={(e) => { e.target.src = `${BASE_URL}/uploads/default.png`; }}
                             />
                           ))}
                         </div>
@@ -277,58 +272,55 @@ const handleDownloadResume = async () => {
           </div>
         </div>
         
-        {/* Likes Modal */}
-{showLikesModal && (
-  <div className={styles.likesModalOverlay}>
-    <div className={styles.likesModal}>
-      <div className={styles.likesModalHeader}>
-        <button 
-          className={styles.backButton} 
-          onClick={closeLikesModal}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
-        </button>
-        <h3>Likes</h3>
-      </div>
-      <div className={styles.likesModalContent}>
-        {currentLikesPostId && postState.currentPostLikes[currentLikesPostId]?.allLikes?.length > 0 ? (
-          postState.currentPostLikes[currentLikesPostId].allLikes.map(user => (
-            <div key={user._id} className={styles.likeUserItem}>
-              <img 
-                src={`${BASE_URL}/uploads/${user.profilePicture || 'default.png'}`}
-                alt={user.name}
-                className={styles.likeUserAvatar}
-                onError={(e) => { e.target.src = '/images/default-profile.png'; }}
-              />
-              <div className={styles.likeUserInfo}>
-                <h4 className={styles.likeUserName}>{user.name}</h4>
-                <p className={styles.likeUserHandle}>@{user.username}</p>
+        {showLikesModal && (
+          <div className={styles.likesModalOverlay}>
+            <div className={styles.likesModal}>
+              <div className={styles.likesModalHeader}>
+                <button 
+                  className={styles.backButton} 
+                  onClick={closeLikesModal}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                </button>
+                <h3>Likes</h3>
+              </div>
+              <div className={styles.likesModalContent}>
+                {currentLikesPostId && postState.currentPostLikes[currentLikesPostId]?.allLikes?.length > 0 ? (
+                  postState.currentPostLikes[currentLikesPostId].allLikes.map(user => (
+                    <div key={user._id} className={styles.likeUserItem}>
+                      <img 
+                        src={`${BASE_URL}/uploads/${user.profilePicture || 'default.png'}`}
+                        alt={user.name}
+                        className={styles.likeUserAvatar}
+                        onError={(e) => { e.target.src = `${BASE_URL}/uploads/default.png`; }}
+                      />
+                      <div className={styles.likeUserInfo}>
+                        <h4 className={styles.likeUserName}>{user.name}</h4>
+                        <p className={styles.likeUserHandle}>@{user.username}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className={styles.noLikesMessage}>No likes yet</p>
+                )}
               </div>
             </div>
-          ))
-        ) : (
-          <p className={styles.noLikesMessage}>No likes yet</p>
+          </div>
         )}
-      </div>
-    </div>
-  </div>
-)}
 
-{/* Comment Modal */}
-{commentModalState.isOpen && (
-  <CommentModal 
-    postId={commentModalState.postId}
-    onClose={closeCommentModal}
-  />
-)}
+        {commentModalState.isOpen && (
+          <CommentModal 
+            postId={commentModalState.postId}
+            onClose={closeCommentModal}
+          />
+        )}
       </DashboardLayout>
     </UserLayout>
   );
 }
 
-// Server-side data fetching
 export async function getServerSideProps(context) {
   const { username } = context.params;
   const token = context.req.cookies.token;
@@ -343,14 +335,12 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    // Fetch user profile data
     const profileResponse = await axios.get(`${BASE_URL}/user/profile/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
     
-    // Fetch user posts
     const postsResponse = await axios.get(`${BASE_URL}/posts/user/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -377,4 +367,3 @@ export async function getServerSideProps(context) {
     };
   }
 }
-

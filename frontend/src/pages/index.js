@@ -9,7 +9,6 @@ export default function Home() {
   const { loggedIn } = useSelector((state) => state.auth);
   
   useEffect(() => {
-    // If user is logged in, redirect to dashboard
     if (loggedIn) {
       router.push("/dashboard");
     }

@@ -6,8 +6,9 @@ import {
   signOut
 } from "firebase/auth";
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
-const API_URL = "http://localhost:5050"; 
+const API_URL = BASE_URL; 
 const api = axios.create({
   baseURL: API_URL,
   headers: {

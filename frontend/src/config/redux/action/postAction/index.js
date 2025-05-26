@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { auth } from "@/config/firebase";
+import { BASE_URL } from "@/config";
 
-const API_URL = "http://localhost:5050";
+const API_URL = BASE_URL;
 
 const api = axios.create({
   baseURL: API_URL,

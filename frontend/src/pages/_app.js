@@ -10,6 +10,7 @@ import { getAboutUser } from "@/config/redux/action/authAction";
 import axios from "axios";
 import Head from "next/head";
 import Cookies from "js-cookie";
+import { BASE_URL } from "@/config";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -28,14 +29,14 @@ function AuthStateObserver({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    const API_URL = "http://localhost:5050";
+    const API_URL = BASE_URL;
     
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const token = await user.getIdToken(true);
           localStorage.setItem("token", token);
-          Cookies.set("token", token, { expires: 1 }); // expires in 1 day
+          Cookies.set("token", token, { expires: 1 }); 
 
           const response = await axios.get(`${API_URL}/get_user_and_profile`, {
             headers: { Authorization: `Bearer ${token}` }
